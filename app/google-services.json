@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "405398622435",
+    "project_id": "smart-express-424204",
+    "storage_bucket": "smart-express-424204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405398622435:android:85e4ff0a0bdb15000935d6",
+        "android_client_info": {
+          "package_name": "ww.smartexpress.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405398622435-5ot9gjmnrg1a1eueo21jsk8qmjbrs0eb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ww.smartexpress.app",
+            "certificate_hash": "d56b1f02238c4176a9eaa570b958007581eeb72a"
+          }
+        },
+        {
+          "client_id": "405398622435-m56nrqnva119q94oaqt0qssbsabsjiuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Sff9JdHkW6Qese1Bza_sKHMRo8YXR9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405398622435-m56nrqnva119q94oaqt0qssbsabsjiuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

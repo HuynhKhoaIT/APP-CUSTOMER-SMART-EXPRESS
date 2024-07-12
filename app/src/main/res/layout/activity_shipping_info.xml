@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="a"
+            type="ww.smartexpress.app.ui.shipping.address.info.ShippingInfoActivity" />
+        <variable
+            name="vm"
+            type="ww.smartexpress.app.ui.shipping.address.info.ShippingInfoViewModel" />
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="ww.smartexpress.app.utils.NumberUtils"/>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_80sdp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:onClick="@{()->a.onBackPressed()}"
+                        android:id="@+id/btnBackBookCar"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@drawable/oval_background"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:elevation="@dimen/_15sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_icon_back"/>
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:id="@+id/linearLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_5sdp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            app:cardCornerRadius="@dimen/_15sdp"
+                            app:cardElevation="@dimen/_3sdp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingVertical="@dimen/_10sdp"
+                                android:paddingLeft="@dimen/_15sdp"
+                                android:paddingRight="@dimen/_10sdp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="@dimen/_10sdp"
+                                        android:src="@drawable/ic_icon_my_location">
+
+                                    </ImageView>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            style="@style/information_edit_text"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@{vm.origin}"
+                                            android:maxLines="2"
+                                            android:ellipsize="end"
+                                            android:textSize="@dimen/_10sdp">
+
+                                        </TextView>
+                                        <TextView
+                                            android:layout_marginVertical="@dimen/_5sdp"
+                                            android:text='@{TextUtils.isEmpty(vm.senderName) ? "Chưa có thông tin người gửi" : vm.senderName + " - " + vm.senderPhone}'
+                                            style="@style/new_password_subtitle"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:maxLines="1"
+                                            android:ellipsize="end">
+                                        </TextView>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <FrameLayout
+                                    android:layout_width="@dimen/_5sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:background="@drawable/line_dashed_border">
+
+                                </FrameLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="@dimen/_10sdp"
+                                        android:src="@drawable/ic_icon_search_location">
+
+                                    </ImageView>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            style="@style/information_edit_text"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@{vm.destination}"
+                                            android:maxLines="2"
+                                            android:ellipsize="end"
+                                            android:textSize="@dimen/_10sdp">
+
+                                        </TextView>
+                                        <TextView
+                                            android:layout_marginVertical="@dimen/_5sdp"
+                                            android:text='@{TextUtils.isEmpty(vm.consigneeName) ? "Chưa có thông tin người nhận" : vm.consigneeName + " - " + vm.consigneePhone}'
+                                            style="@style/new_password_subtitle"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:maxLines="1"
+                                            android:ellipsize="end">
+                                        </TextView>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:background="@color/gray_light">
+
+                                </LinearLayout>
+
+
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:onClick="@{()-> a.showDialog()}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="@dimen/_10sdp"
+                                        android:src="@drawable/ic_icon_destination">
+
+                                    </ImageView>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                style="@style/information_edit_text"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Dịch vụ"
+                                                android:maxLines="1"
+                                                android:ellipsize="end"
+                                                android:textSize="@dimen/_12sdp">
+
+                                            </TextView>
+
+                                            <TextView
+                                                android:text="Lựa chọn dịch vụ dựa trên chi tiết món hàng"
+                                                style="@style/new_password_subtitle"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@color/white"
+                                                android:maxLines="1"
+                                                android:ellipsize="end">
+
+                                            </TextView>
+
+                                        </LinearLayout>
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/ic_icon_expand">
+
+                                        </ImageView>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:background="@color/gray_light">
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="@dimen/_10sdp"
+                                        android:src="@drawable/ic_icon_package">
+
+                                    </ImageView>
+
+                                    <LinearLayout
+                                        android:onClick="@{()-> vm.toShippingDetailActivity()}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                style="@style/information_edit_text"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text='@{vm.isCod ? "Thu hộ: " + NumberUtils.formatNumber(vm.codPrice) +" VNĐ": TextUtils.isEmpty(vm.consigneeName) ? "Thêm chi tiết món hàng *" : "Chỉnh sửa thông tin món hàng"}'
+                                                android:textColor="@color/color4"
+                                                android:textSize="@dimen/_12sdp"
+                                                android:maxLines="1"
+                                                android:ellipsize="end">
+
+                                            </TextView>
+
+
+<!--                                            <TextView-->
+<!--                                                android:text="Đề xuất dựa trên chi tiết món hàng"-->
+<!--                                                style="@style/new_password_subtitle"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="match_parent"-->
+<!--                                                android:layout_weight="1"-->
+<!--                                                android:background="@color/white"-->
+<!--                                                android:maxLines="1"-->
+<!--                                                android:ellipsize="end">-->
+
+<!--                                            </TextView>-->
+
+                                        </LinearLayout>
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/ic_icon_expand">
+
+                                        </ImageView>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginLeft="@dimen/_12sdp">
+                                <TextView
+                                    style="@style/title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/sender_information" />
+                                <TextView
+                                    style="@style/title"
+                                    android:textSize="@dimen/_16ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_3sdp"
+                                    android:text="@string/required_star"
+                                    android:textColor="@color/red_color">
+
+                                </TextView>
+                            </LinearLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_marginHorizontal="@dimen/_12sdp"
+                                android:id="@+id/tipSenderName"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/sender_name"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false"
+                                app:errorEnabled="true">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtSenderName"
+                                    style="@style/order_information_text_bold_11"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:text="@={vm.senderName}"
+                                    android:inputType="text"
+                                    android:textColorHint="@color/grey_text"
+                                    android:maxLength="50">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_marginHorizontal="@dimen/_12sdp"
+                                android:id="@+id/tipSenderPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/phone_number"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false"
+                                app:errorEnabled="true">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtSenderPhone"
+                                    android:text="@={vm.senderPhone}"
+                                    style="@style/order_information_text_bold_11"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:inputType="phone"
+                                    android:textColorHint="@color/grey_text"
+                                    android:maxLength="50">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+<!--                            <EditText-->
+<!--                                android:drawableLeft="@drawable/ic_icon_person"-->
+<!--                                android:id="@+id/edtSenderName"-->
+<!--                                android:text="@={vm.senderName}"-->
+<!--                                style="@style/order_information_text_bold_11"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/_35sdp"-->
+<!--                                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                                android:layout_marginHorizontal="@dimen/_12sdp"-->
+<!--                                android:background="@drawable/bg_information"-->
+<!--                                android:hint="@string/sender_name"-->
+<!--                                android:paddingLeft="@dimen/_10sdp"-->
+<!--                                android:paddingRight="@dimen/_10sdp"-->
+<!--                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:inputType="text"/>-->
+<!--                            <EditText-->
+<!--                                android:drawableLeft="@drawable/ic_icon_mobile"-->
+<!--                                android:id="@+id/edtSenderPhone"-->
+<!--                                android:text="@={vm.senderPhone}"-->
+<!--                                style="@style/order_information_text_bold_11"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/_35sdp"-->
+<!--                                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                                android:layout_marginHorizontal="@dimen/_12sdp"-->
+<!--                                android:background="@drawable/bg_information"-->
+<!--                                android:hint="@string/phone_number"-->
+<!--                                android:inputType="phone"-->
+<!--                                android:paddingLeft="@dimen/_15sdp"-->
+<!--                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                android:maxLines="1" />-->
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginLeft="@dimen/_12sdp">
+                                <TextView
+                                    style="@style/title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/receiver_information" />
+                                <TextView
+                                    style="@style/title"
+                                    android:textSize="@dimen/_16ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_3sdp"
+                                    android:text="@string/required_star"
+                                    android:textColor="@color/red_color">
+
+                                </TextView>
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_marginHorizontal="@dimen/_12sdp"
+                                android:id="@+id/tipConsigneeName"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="Tên người nhận"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false"
+                                app:errorEnabled="true">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtConsigneeName"
+                                    style="@style/order_information_text_bold_11"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:text="@={vm.consigneeName}"
+                                    android:inputType="text"
+                                    android:textColorHint="@color/grey_text"
+                                    android:maxLength="50">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_marginHorizontal="@dimen/_12sdp"
+                                android:id="@+id/tipConsigneePhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/phone_number"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false"
+                                app:errorEnabled="true">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtConsigneePhone"
+                                    android:text="@={vm.consigneePhone}"
+                                    style="@style/order_information_text_bold_11"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:inputType="phone"
+                                    android:textColorHint="@color/grey_text"
+                                    android:maxLength="50">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+<!--                            <EditText-->
+<!--                                android:id="@+id/edtConsigneeName"-->
+<!--                                android:text="@={vm.consigneeName}"-->
+<!--                                style="@style/order_information_text_bold_11"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/_35sdp"-->
+<!--                                android:layout_marginHorizontal="@dimen/_12sdp"-->
+<!--                                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                                android:background="@drawable/bg_information"-->
+<!--                                android:hint="@string/receiver_name"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                android:paddingLeft="@dimen/_15sdp"-->
+<!--                                android:paddingRight="@dimen/_10sdp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:inputType="text"/>-->
+
+<!--                            <EditText-->
+<!--                                android:id="@+id/edtConsigneePhone"-->
+<!--                                android:text="@={vm.consigneePhone}"-->
+<!--                                style="@style/order_information_text_bold_11"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/_35sdp"-->
+<!--                                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                                android:layout_marginHorizontal="@dimen/_12sdp"-->
+<!--                                android:background="@drawable/bg_information"-->
+<!--                                android:hint="@string/phone_number"-->
+<!--                                android:inputType="phone"-->
+<!--                                android:paddingLeft="@dimen/_15sdp"-->
+<!--                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                android:maxLines="1" />-->
+
+
+                            <TextView
+                                style="@style/title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:text="Ghi chú cho tài xế" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_marginHorizontal="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="Ghi chú"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false"
+                                app:errorEnabled="true"
+                                app:hintEnabled="true">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtCusNote"
+                                    android:text="@={vm.customerNote}"
+                                    style="@style/order_information_text_bold_11"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_70sdp"
+                                    android:maxLines="3"
+                                    android:ellipsize="end"
+                                    android:gravity="top"
+                                    android:textColorHint="@color/grey_text"
+                                    android:inputType="textCapSentences|textMultiLine">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--                            <EditText-->
+<!--                                android:text="@={vm.customerNote}"-->
+<!--                                android:id="@+id/edtCusNote"-->
+<!--                                style="@style/order_information_text_bold_11"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="@dimen/_70sdp"-->
+<!--                                android:layout_marginHorizontal="@dimen/_12sdp"-->
+<!--                                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                                android:background="@drawable/bg_information"-->
+<!--                                android:hint="Ghi chú"-->
+<!--                                android:maxLines="2"-->
+<!--                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                android:paddingLeft="@dimen/_15sdp"-->
+<!--                                android:paddingRight="@dimen/_10sdp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:gravity="top"-->
+<!--                                android:inputType="textCapSentences|textMultiLine"/>-->
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/title"
+                                    android:textAlignment="textStart"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/bonus_service" />
+                                <RelativeLayout
+                                    android:id="@+id/layoutCashPayment"
+                                    android:onClick="@{(v)->vm.selectCOD()}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_48sdp"
+                                    android:layout_marginTop="@dimen/_20sdp"
+                                    android:background="@{vm.selectCOD ? @drawable/payment_method_background : @drawable/bg_payment_not_select}"
+                                    android:gravity="center_vertical">
+
+                                    <ImageView
+                                        android:id="@+id/imgMoney"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_icon_money"
+                                        />
+                                    <ImageView
+                                        android:id="@+id/txtTick"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_icon_tick"
+                                        android:visibility="@{vm.selectCOD ? View.VISIBLE : View.GONE }"/>
+
+
+                                    <TextView
+                                        style="@style/order_information_text_medium"
+                                        android:id="@+id/txtPayment"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/imgMoney"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:text="@string/cod" />
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:visibility="@{vm.selectCOD ? View.VISIBLE : View.GONE }"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:layout_marginTop="@dimen/_5sdp"
+                                                android:layout_weight="1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                                app:boxBackgroundMode="outline"
+                                                app:shapeAppearanceOverlay="@style/Rounded"
+                                                android:hint="Số tiền thu hộ"
+                                                app:hintEnabled="true"
+                                                app:boxStrokeColor="@color/app_color"
+                                                app:hintTextColor="@color/app_color"
+                                                app:helperTextTextColor="#898A8D"
+                                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                                app:hintAnimationEnabled="false"
+                                                app:errorEnabled="true"
+                                                app:suffixText="VNĐ">
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/edtCodPrice"
+                                                    android:text="@={vm.codPriceText}"
+                                                    style="@style/order_information_text_bold_11"
+                                                    android:paddingVertical="@dimen/_5sdp"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="@dimen/_35sdp"
+                                                    android:maxLines="1"
+                                                    android:ellipsize="end"
+                                                    android:inputType="number"
+                                                    android:textColorHint="@color/grey_text"
+                                                    android:maxLength="50">
+                                                </com.google.android.material.textfield.TextInputEditText>
+                                            </com.google.android.material.textfield.TextInputLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:id="@+id/tvCod"
+                                            style="@style/app_text"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:maxLines="2"
+                                            android:textSize="@dimen/_10ssp"
+                                            android:textColor="@color/red_color"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+<!--                                <LinearLayout-->
+<!--                                    android:visibility="@{vm.selectCOD ? View.VISIBLE : View.GONE }"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginVertical="@dimen/_15sdp"-->
+<!--                                    android:orientation="vertical">-->
+<!--                                    <LinearLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:orientation="vertical">-->
+<!--                                        <LinearLayout-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="@dimen/_35sdp"-->
+<!--                                            android:orientation="horizontal"-->
+<!--                                            android:background="@drawable/bg_information">-->
+<!--                                            <EditText-->
+<!--                                                android:id="@+id/edtCodPrice"-->
+<!--                                                android:text='@={vm.codPriceText}'-->
+<!--                                                android:layout_width="match_parent"-->
+<!--                                                android:layout_height="match_parent"-->
+<!--                                                style="@style/order_information_text_medium"-->
+<!--                                                android:hint="Số tiền thu hộ"-->
+<!--                                                android:background="@null"-->
+<!--                                                android:inputType="phone"-->
+<!--                                                android:maxLength="10"-->
+<!--                                                android:paddingLeft="@dimen/_15sdp"-->
+<!--                                                android:paddingVertical="@dimen/_5sdp"-->
+<!--                                                android:maxLines="1"-->
+<!--                                                android:layout_weight="1"/>-->
+<!--                                            <TextView-->
+<!--                                                android:gravity="center"-->
+<!--                                                android:layout_width="wrap_content"-->
+<!--                                                android:layout_height="match_parent"-->
+<!--                                                android:text="VNĐ"-->
+<!--                                                style="@style/location_text"-->
+<!--                                                android:layout_marginRight="@dimen/_10sdp">-->
+
+<!--                                            </TextView>-->
+
+<!--                                        </LinearLayout>-->
+
+<!--                                        <TextView-->
+<!--                                            android:layout_marginTop="@dimen/_10sdp"-->
+<!--                                            style="@style/app_text"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:maxLines="2"-->
+<!--                                            android:textColor="@color/red_color"-->
+<!--                                            android:text="Vui lòng nhập tối thiểu 10.000 đ, tối đa 50.000.000 đ" />-->
+<!--                                    </LinearLayout>-->
+<!--                                </LinearLayout>-->
+
+
+
+                                <RelativeLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/layoutCreditPayment"
+                                    android:onClick="@{(v)->vm.selectHandDelivery()}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_48sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:background="@{vm.bonusService!=0 ?@drawable/payment_method_background: null}"
+                                    android:gravity="center_vertical">
+
+                                    <ImageView
+                                        android:id="@+id/imgCard"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_icon_hand_delivery" />
+                                    <ImageView
+                                        android:id="@+id/txtTickCard"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_icon_tick"
+                                        android:visibility="@{vm.bonusService !=0 ? View.VISIBLE : View.GONE}"/>
+
+                                    <TextView
+                                        style="@style/order_information_text_medium"
+                                        android:id="@+id/txtPaymentCard"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/imgCard"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:text="@string/hand_delivery" />
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/lnSavedLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_icon_mark_full">
+
+                                </ImageView>
+
+                                <TextView
+                                    style="@style/destination_save"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:text="@string/search_destination_save">
+
+                                </TextView>
+                            </LinearLayout>
+
+
+                            <androidx.core.widget.NestedScrollView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_15sdp"
+                                    android:orientation="horizontal">
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/rcLocationType"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        tools:listitem="@layout/item_location_type">
+
+                                    </androidx.recyclerview.widget.RecyclerView>
+
+                                </LinearLayout>
+                            </androidx.core.widget.NestedScrollView>
+
+                        </LinearLayout>
+                        <Button
+                            android:visibility="gone"
+                            style="@style/BookCarButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_marginBottom="@dimen/_30sdp"
+                            android:background="@drawable/app_button_background"
+                            android:text="@string/welcome_button_continue"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/trip_information_text_bold"
+                            android:id="@+id/textView18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Áp dụng ưu đãi" />
+
+                        <LinearLayout
+                            android:onClick="@{()-> vm.toCouponActivity()}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginVertical="@dimen/_5sdp">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_icon_discount"
+                                android:layout_marginRight="@dimen/_5sdp">
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Ưu đãi 30% tối đa 30K"
+                                android:maxLines="1"
+                                android:ellipsize="end">
+
+                            </TextView>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_icon_expand"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </ScrollView>
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/layoutAddCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:background="@drawable/background_book_small"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng cộng:"
+                        android:layout_weight="2"
+                        style="@style/new_password_text"
+                        android:textSize="@dimen/_12ssp"
+                        android:textAlignment="textStart"
+                        >
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end">
+                        <TextView
+                            android:id="@+id/tvTotalDiscount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85.000 đ"
+                            android:maxLines="1"
+                            android:maxLength="13"
+                            android:ellipsize="end"
+                            android:textAlignment="textEnd"
+                            style="@style/new_password_text"
+                            android:textSize="@dimen/_16ssp"
+                            android:layout_marginRight="@dimen/_10sdp">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100000 đ"
+                            android:maxLines="1"
+                            android:maxLength="13"
+                            android:ellipsize="end"
+                            android:textAlignment="textEnd"
+                            style="@style/new_password_text"
+                            android:textSize="@dimen/_14ssp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:onClick="@{() -> a.toDelivery()}"
+                    android:enabled="@{!TextUtils.isEmpty(vm.senderPhone) &amp;&amp; !TextUtils.isEmpty(vm.senderName) &amp;&amp; !TextUtils.isEmpty(vm.consigneePhone) &amp;&amp; !TextUtils.isEmpty(vm.consigneeName)}"
+                    style="@style/BookCarButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="@drawable/app_button_background"
+                    android:text="@string/welcome_button_continue"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backgroud_book"
+            android:elevation="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="@string/bottom_sheet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/item_win_bike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Chọn dịch vụ">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcWinShip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_win_bike" />
+
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

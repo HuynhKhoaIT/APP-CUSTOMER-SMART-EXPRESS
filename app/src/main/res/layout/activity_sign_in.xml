@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="a"
+            type="ww.smartexpress.app.ui.signin.SignInActivity" />
+        <variable
+            name="vm"
+            type="ww.smartexpress.app.ui.signin.SignInViewModel" />
+        <import type="android.text.TextUtils"></import>
+        <import type="android.view.View"></import>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:src="@drawable/image_bg_login"
+                android:scaleType="fitXY">
+
+            </ImageView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:orientation="vertical">
+                        <!--            <include-->
+                        <!--                android:id="@+id/layoutHeader"-->
+                        <!--                layout="@layout/layout_header"-->
+                        <!--                bind:visible="@{vm.visibleBack}"-->
+                        <!--                bind:title="@{vm.tabIndex == 0 ? @string/login_title : @string/register_all_win}">-->
+
+                        <!--            </include>-->
+
+
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLayout"
+                            android:layout_width="wrap_content"
+                            style="@style/CustomTabLayoutStyle"
+                            app:tabSelectedTextColor="@color/green_light_app"
+                            android:background="@color/white"
+                            android:layout_height="wrap_content"
+                            app:tabTextColor="@color/black"
+                            app:tabIndicatorColor="@color/green_light_app"
+                            app:tabMode="auto"
+                            app:tabGravity="fill">
+
+                            <com.google.android.material.tabs.TabItem
+                                android:id="@+id/tabSignIn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/login_title" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:id="@+id/tabRegister"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/register_all_win" />
+
+                        </com.google.android.material.tabs.TabLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutSignIn"
+                            android:visibility="@{vm.tabIndex == 0 ? View.VISIBLE : View.GONE}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:visibility="@{vm.tabIndex == 0 &amp;&amp; vm.user.id != null ? View.VISIBLE : View.GONE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text='@{"Xin chào, " + vm.user.phone}'
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:layout_marginHorizontal="@dimen/_50sdp"
+                                style="@style/app_text_b"
+                                android:gravity="center"/>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tipPhone"
+                                android:visibility="@{vm.user.id != null ? View.GONE : View.VISIBLE}"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/phone_hint"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtPhone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="phone"
+                                    android:maxLength="10"
+                                    android:maxLines="1"
+                                    android:text="@={vm.phoneS}"
+                                    android:textColorHint="@color/grey_text"
+                                    style="@style/information_edit_text"
+                                    android:textColor="#545454">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_20sdp">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/tipPwS"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    app:boxBackgroundMode="outline"
+                                    app:shapeAppearanceOverlay="@style/Rounded"
+                                    android:hint="@string/password"
+                                    app:hintEnabled="true"
+                                    app:boxStrokeColor="@color/app_color"
+                                    app:hintTextColor="@color/app_color"
+                                    app:helperTextTextColor="#898A8D"
+                                    app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                    app:hintAnimationEnabled="false"
+                                    app:passwordToggleEnabled="true">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edtPw"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColorHint="@color/grey_text"
+                                        style="@style/information_edit_text"
+                                        android:text="@={vm.passwordS}"
+                                        android:maxLength="16">
+                                    </com.google.android.material.textfield.TextInputEditText>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+<!--                                <ImageView-->
+<!--                                    android:onClick="@{(v)->vm.setIsVisibilityPasswordS()}"-->
+<!--                                    android:layout_gravity="right|center_vertical"-->
+<!--                                    android:layout_marginRight="@dimen/_15sdp"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:src="@{vm.isVisibilityS ? @drawable/ic_icon_visibility_off : @drawable/ic_icon_visibility}">-->
+
+<!--                                </ImageView>-->
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutRegister"
+                            android:visibility="@{vm.tabIndex == 1 ? View.VISIBLE : View.GONE}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tipName"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/fullName_hint"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:text="@={vm.name}"
+                                    android:inputType="text"
+                                    android:textColorHint="@color/grey_text"
+                                    style="@style/information_edit_text"
+                                    android:maxLength="50">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tipEmailR"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/email_hint"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtMail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:text="@={vm.email}"
+                                    android:textColorHint="@color/grey_text"
+                                    style="@style/information_edit_text">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tipPhoneR"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                app:boxBackgroundMode="outline"
+                                app:shapeAppearanceOverlay="@style/Rounded"
+                                android:hint="@string/phone_hint"
+                                app:hintEnabled="true"
+                                app:boxStrokeColor="@color/app_color"
+                                app:hintTextColor="@color/app_color"
+                                app:helperTextTextColor="#898A8D"
+                                app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                app:hintAnimationEnabled="false">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtPhoneR"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="phone"
+                                    android:maxLength="10"
+                                    android:maxLines="1"
+                                    android:text="@={vm.phoneR}"
+                                    android:textColorHint="@color/grey_text"
+                                    style="@style/information_edit_text">
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_15sdp">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/tipPwR"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    app:boxBackgroundMode="outline"
+                                    app:shapeAppearanceOverlay="@style/Rounded"
+                                    android:hint="@string/password"
+                                    app:hintEnabled="true"
+                                    app:boxStrokeColor="@color/app_color"
+                                    app:hintTextColor="@color/app_color"
+                                    app:helperTextTextColor="#898A8D"
+                                    app:boxStrokeWidthFocused="@dimen/_1sdp"
+                                    app:hintAnimationEnabled="false"
+                                    app:passwordToggleEnabled="true">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edtPWR"
+                                        android:paddingRight="@dimen/_35sdp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColorHint="@color/grey_text"
+                                        style="@style/information_edit_text"
+                                        android:text="@={vm.passwordR}"
+                                        android:maxLength="16">
+                                    </com.google.android.material.textfield.TextInputEditText>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_20sdp">
+                        <Button
+                            android:id="@+id/btnSignInOrRegister"
+                            style="@style/AppButtonStyle"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginVertical="@dimen/_10sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{vm.tabIndex == 0 ? @string/login_title : @string/register_all_win}"
+                            android:onClick="@{(v) -> a.doNext()}"
+                            android:layout_weight="1">
+
+                        </Button>
+
+                        <LinearLayout
+                            android:id="@+id/imvBiometricLogin"
+                            android:visibility="@{vm.hasBiometric  &amp;&amp; vm.user.isBiometric &amp;&amp; vm.tabIndex == 0 &amp;&amp; vm.user.id != null ? View.VISIBLE : View.GONE}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_btn_chat"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="@dimen/_12sdp"
+                            android:layout_marginVertical="@dimen/_10sdp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/ic_icon_fingerprint">
+
+                            </ImageView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:visibility="@{vm.tabIndex == 0 &amp;&amp; vm.user.id != null ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='Đăng nhập bằng tài khoản khác'
+                        android:onClick="@{() -> a.doAnotherLogin()}"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginHorizontal="@dimen/_50sdp"
+                        style="@style/app_text_b"
+                        android:gravity="center"/>
+                    <TextView
+                        android:visibility="@{vm.tabIndex == 0 ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bạn quên mật khẩu ư?"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:layout_marginHorizontal="@dimen/_50sdp"
+                        style="@style/app_text_b"
+                        android:gravity="center"
+                        android:onClick="@{() -> vm.gotoForgetPassword()}"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hoặc đăng nhập với"
+                style="@style/app_text_b"
+                android:gravity="center" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imvLoginGG"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/ic_icon_google"
+                android:layout_gravity="center">
+            </ImageView>
+        </LinearLayout>
+    </ScrollView>
+</layout>

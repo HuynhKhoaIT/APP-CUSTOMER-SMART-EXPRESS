@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="ivm"
+            type="ww.smartexpress.app.data.model.api.response.BookingResponse" />
+        <import type="android.view.View"></import>
+        <import type="ww.smartexpress.app.utils.NumberUtils"></import>
+        <import type="ww.smartexpress.app.utils.DateUtils"></import>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_6sdp"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/_5sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            style="@style/font_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/_5sdp"
+                            android:layout_gravity="left"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textSize="@dimen/_8ssp"
+                            android:background='@{ivm.state == 300 ? @drawable/bg_text_completed : ivm.state == -100 ? @drawable/bg_text_cancel : @drawable/bg_text_pending}'
+                            android:text='@{ivm.state == 300 ? @string/completed : ivm.state == -100 ? @string/canceled : ivm.state == 100 ? "Tìm thấy tài xế" : ivm.state == 200 ? "Tài xế nhận đơn" : "Điều hướng" }'
+                            android:textColor='@color/white' />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_weight="1"
+                        style="@style/font_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/black"
+                        android:textAlignment="textEnd"
+                        android:text="@{DateUtils.dateFormat(ivm.createdDate)}"
+                        android:maxLines="1">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:gravity="center|top"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_4sdp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_5sdp">
+                        <TextView
+                            style="@style/font_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{ivm.service.name}"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/app_color">
+                        </TextView>
+                        <TextView
+                            style="@style/font_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text='@{ivm.promotionMoney == 0.0 ? NumberUtils.formatDoubleNumber(ivm.money) + " đ" : NumberUtils.formatDoubleNumber(ivm.money - ivm.promotionMoney) + " đ"}'
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textSize="@dimen/_15ssp"
+                            android:textColor="@color/black">
+                        </TextView>
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="center"
+                            android:src="@{ivm.service.image, default = @drawable/car}">
+
+                        </ImageView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_15sdp"
+                                    android:layout_height="@dimen/_15sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:src="@drawable/ic_icon_my_location">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text='@{ivm.pickupAddress}'
+                                    android:fontFamily="@font/montserrat"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_8ssp"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_15sdp"
+                                    android:layout_height="@dimen/_15sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:src="@drawable/ic_icon_search_location">
+
+                                </ImageView>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text='@{ivm.destinationAddress}'
+                                    android:fontFamily="@font/montserrat"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_8ssp"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_15sdp"
+                                    android:layout_height="@dimen/_15sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:src="@drawable/ic_icon_package">
+
+                                </ImageView>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text='@{NumberUtils.getSize(ivm.service.size) +"  "+ivm.service.weight+"Kg"}'
+                                    android:fontFamily="@font/montserrat"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_8ssp"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
